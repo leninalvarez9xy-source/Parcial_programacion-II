@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Buscador</title>
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#f5f5f5;
+}
+
+.contenedor{
+    width:600px;
+    margin:50px auto;
+    background:white;
+    padding:20px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+input{
+    padding:8px;
+    width:250px;
+}
+
+button{
+    padding:8px 15px;
+}
+
+#resultado{
+    margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h2>Buscador de Productos</h2>
+
+<input
+type="text"
+id="codigo"
+placeholder="Código">
+
+<button onclick="buscar()">
+Buscar
+</button>
+
+<div id="resultado"></div>
+
+<br>
+
+<a href="/principal">
+<button>
+Regresar
+</button>
+</a>
+
+<a href="/logout">
+<button>
+Salir
+</button>
+</a>
+
+</div>
+
+<script>
+
+function buscar(){
+
+let codigo =
+document.getElementById("codigo").value;
+
+fetch("/api/buscar_producto",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+codigo:codigo
+})
+
+})
+
+.then(res=>res.json())
+
+.then(data=>{
+
+let salida="";
+
+if(data.nombre){
+
+salida=`
+
+<h3>${data.nombre}</h3>
+
+<p><b>Código:</b> ${data.codigo}</p>
+
+<p><b>Descripción:</b> ${data.descripcion}</p>
+
+<p><b>Precio:</b> S/ ${data.precio}</p>
+
+<p><b>Stock:</b> ${data.stock}</p>
+
+<p><b>Categoría:</b> ${data.categoria}</p>
+
+`;
+
+}else{
+
+salida="<h3>Producto no encontrado</h3>";
+
+}
+
+document.getElementById("resultado").innerHTML=salida;
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

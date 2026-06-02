@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel Principal</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f5f5f5;
+        }
+
+        .contenedor{
+            width:400px;
+            margin:100px auto;
+            background:white;
+            padding:20px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            text-align:center;
+        }
+
+        button{
+            width:200px;
+            padding:10px;
+            margin:10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h1>Panel Principal</h1>
+
+<h3>Bienvenido {{ usuario }}</h3>
+
+<a href="/buscador">
+    <button>
+        Buscar Productos
+    </button>
+</a>
+
+<br>
+
+<a href="/logout">
+    <button>
+        Salir del Sistema
+    </button>
+</a>
+
+</div>
+
+</body>
+</html>
